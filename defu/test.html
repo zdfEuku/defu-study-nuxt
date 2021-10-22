@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>特殊字符-Emoji</title>
+    <style>
+      #content{
+        font-size: 24px;
+      }
+      .item{
+        width: 200px;
+        display: inline-block;
+        background-color: cyan;
+        margin: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script>
+      var content = document.querySelector('#content');
+      for(var j = 0x1F000; j < 0x1FFFF; j++){
+        // &#x1F602;
+        var str1 = String.fromCharCode(j);
+        var span1 = document.createElement('span');
+        span1.classList.add('item')
+        span1.innerHTML = str1 + '&nbsp;&nbsp;&nbsp;&nbsp; <<-->> &nbsp;&nbsp;&nbsp;&nbsp;' + j;
+        content.append(span1);
+      }
+    </script>
+
+<script type="text/javascript">
+
+  /*
+   *js HTML Encode
+   */
+  var htmlEncode=function(str) {//HTML des encode.
+      var res=[];
+      for(var i=0;i < str.length;i++)
+          res[i]=str.charCodeAt(i);
+      return "&#"+res.join(";&#")+";";
+  };
+
+  var htmlEncode2=function(s) {
+      var r = "", c;
+      for (var i = 0; i < s.length; i++) {
+          c = s.charCodeAt(i);
+          r += (c < 32 || c == 38 || c > 127) ? ("&#" + c + ";") : s.charAt(i);
+      }
+      return r;
+  };
+
+  //s.replace(/([\u4e00-\u9fa5]+)/g,function($,$1) {
+  //    return htmlEncode($1);
+  //})
+  var htmlHexEncode=function(str) {//HTML hex encode.
+      var res=[];
+      for(var i=0;i < str.length;i++)
+          res[i]=str.charCodeAt(i).toString(16);
+      return "&#"+String.fromCharCode(0x78)+res.join(";&#"+String.fromCharCode(0x78))+";";//x ，防止ff下&#x 转义
+  };
+
+  var htmlDecode = function(str) {
+      return str.replace(/&#(x)?([^&]{1,5});?/g,function($,$1,$2) {
+          return String.fromCharCode(parseInt($2 , $1 ? 16:10));
+      });
+  };
+
+  var s="htmlEncode HTML 编码转换 &#";
+  var s1=htmlEncode(s)+"\n\n只对双字节和&编码："+htmlEncode2(s);
+  var s2=htmlDecode(s1);
+  alert("编码前："+s+"\n\n编码后："+s1+"\n\n解码后："+s2);
+
+  var s="htmlHexEncode HTML 编码转换&#";
+  var s1=htmlHexEncode(s);
+  var s2=htmlDecode(s1);
+  alert("编码前："+s+"\n\n编码后："+s1+"\n\n解码后："+s2);
+
+  var msg = "米市巷街道";
+   alert(msg);
+   var result = htmlDecode(msg);
+   alert(result);
+
+   </script>
+
+  </body>
+</html>

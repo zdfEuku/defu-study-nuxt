@@ -1,0 +1,23 @@
+{
+  "name": "defu-study-nuxt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "core-js": "^3.15.1",
+    "element-ui": "^2.15.2",
+    "js-md5": "^0.7.3",
+    "lodash": "^4.17.21",
+    "nuxt": "^2.15.7",
+    "qs": "^6.10.1"
+  },
+  "devDependencies": {
+    "ngrok": "^4.2.2"
+  }
+}

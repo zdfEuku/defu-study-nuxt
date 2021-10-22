@@ -1,0 +1,2 @@
+vue 的 transition.   过程中添加  v-enter,  v-enter-to, v-enter-active, v-leave, v-leave-to, v-leave-active 等六个类
+  可以结合 transition 和 animation 实现过渡效果
